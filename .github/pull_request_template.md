@@ -1,3 +1,5 @@
+<!-- Please fill in the sections below when making normative changes. Feel free to remove the sections when only making non-normative changes. -->
+
 For normative changes, the following tasks have been completed:
  * [ ] At least two implementers are interested:
    * [ ] WebKit
