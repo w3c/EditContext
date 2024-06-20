@@ -1,7 +1,8 @@
 For normative changes, the following tasks have been completed:
  * [ ] At least two implementers are interested:
-   * …
-   * …
+   * [ ] WebKit
+   * [ ] Chromium
+   * [ ] Gecko
  * [ ] Editing WG resolution on the proposed changes
 
 Implementation bugs are filed:
