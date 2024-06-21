@@ -2,10 +2,12 @@
 
 For normative changes, the following tasks have been completed:
  * [ ] Editing WG resolution on the proposed changes
+
  * [ ] For features that have not shipped in all browsers, at least two implementers are interested (link to issue indicating position, or write "Implementing"/"Not Implementing"):
    * [ ] WebKit
    * [ ] Chromium
    * [ ] Gecko
+
  * [ ] For browsers that are shipping the feature, implementation bugs are filed for the proposed changes (link to bug, or write "Implementing"/"Not Implementing"):
    * [ ] WebKit (https://bugs.webkit.org/show_bug.cgi?id=)
    * [ ] Chromium (https://bugs.chromium.org/p/chromium/issues/detail?id=)
