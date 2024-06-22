@@ -1,9 +1,7 @@
 <!-- Please fill in the sections below when making normative changes. Feel free to remove the sections when only making non-normative changes. -->
 
 For normative changes, the following tasks have been completed:
- * [ ] Editing WG resolution on the proposed changes
-
- * [ ] For features that have not shipped in all browsers, at least two implementers are interested (link to issue indicating position, or write "Implementing"/"Not Implementing"):
+ * [ ] Editing WG resolution on the proposed changes, with at least two implementers participating and not objecting:
    * [ ] WebKit
    * [ ] Chromium
    * [ ] Gecko
