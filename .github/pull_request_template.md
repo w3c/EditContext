@@ -6,7 +6,7 @@ For normative changes, the following tasks have been completed:
    * [ ] Chromium
    * [ ] Gecko
 
- * [ ] For browsers that are shipping the feature, implementation bugs are filed for the proposed changes (link to bug, or write "Implementing"/"Not Implementing"):
+ * [ ] For browsers that are shipping the feature, implementation bugs are filed for the proposed changes (link to bug, or write "Not Implementing"):
    * [ ] WebKit (https://bugs.webkit.org/show_bug.cgi?id=)
    * [ ] Chromium (https://bugs.chromium.org/p/chromium/issues/detail?id=)
    * [ ] Gecko (https://bugzilla.mozilla.org/show_bug.cgi?id=)
