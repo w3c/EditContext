@@ -733,6 +733,30 @@
                 </ol>
             </div><!-- algorithm -->
 
+            <h4><dfn>EditContext-handled inputType</dfn></h4>
+            <div class="algorithm">
+                An <a href="https://www.w3.org/TR/uievents/#dom-inputevent-inputtype">inputType</a> is an
+                [=EditContext-handled inputType=] if it is one of the following:
+                <ul>
+                    <li><code>insertText</code></li>
+                    <li><code>insertTranspose</code></li>
+                    <li><code>deleteWordBackward</code></li>
+                    <li><code>deleteWordForward</code></li>
+                    <li><code>deleteContent</code></li>
+                    <li><code>deleteContentBackward</code></li>
+                    <li><code>deleteContentForward</code></li>
+                </ul>
+                <div class="note">
+                    The <a href="https://www.w3.org/TR/uievents/#dom-inputevent-inputtype">inputType</a>s handled by {{EditContext}}
+                    are those which operate only on raw text. Other <a href="https://www.w3.org/TR/uievents/#dom-inputevent-inputtype">inputType</a>s
+                    that depend on formats, clipboard/dragdrop, undo, or browser UI like spellcheck cannot be handled by
+                    {{EditContext}} since {{EditContext}}'s state does not include these concepts. If an author wants their
+                    application to handle those <a href="https://www.w3.org/TR/uievents/#dom-inputevent-inputtype">inputType</a>s,
+                    they need to process them manually in a <a href="https://www.w3.org/TR/uievents/#event-type-beforeinput">beforeinput</a>
+                    event handler.
+                </div>
+            </div>
+
             <h4><dfn>Update the EditContext</dfn></h4>
             <div class="algorithm">
                 <dl>
