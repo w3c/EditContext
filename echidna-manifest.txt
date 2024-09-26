@@ -1,0 +1,3 @@
+index.html?specStatus=WG&shortName=edit-context respec
+images/many-input-methods.jpg 
+images/text-input-process.jpg 
