@@ -3,4 +3,4 @@ indent: yes
 wrap: 80
 tidy-mark: no
 newline: LF
-custom-tags: yes
+custom-tags: pre
