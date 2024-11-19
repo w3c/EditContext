@@ -800,12 +800,16 @@
                     </ol>
                 </li>
                 <li>If |editContext|'s [=is composing=] is true, then:
-                    <ol>Let |insertionStart| be |replacementRangeStart|.</ol>
-                    <ol>Let |insertionEnd| be |replacementRangeEnd|.</ol>
+                    <ol>
+                        <li>Let |insertionStart| be |replacementRangeStart|.</li>
+                        <li>Let |insertionEnd| be |replacementRangeEnd|.</li>
+                    </ol>
                 </li>
                 <li>Otherwise:
-                    <ol>Let |insertionStart| be |selectionStart|.</ol>
-                    <ol>Let |insertionEnd| be |selectionEnd|.</ol>
+                    <ol>
+                        <li>Let |insertionStart| be |selectionStart|.</li>
+                        <li>Let |insertionEnd| be |selectionEnd|.</li>
+                    </ol>
                 </li>
                 <li>
                     Replace the substring of |editContext|'s [=text=] in the range of |insertionStart| and |insertionEnd| with |text|
