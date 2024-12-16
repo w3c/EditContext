@@ -1,6 +1,6 @@
 # Developer Design
 
-![shared text](shared_text_basic.png)
+![shared text](images/shared_text_basic.png)
 
 1. The typical flow of text input comes from the user pressing keys on the keyboard. 
 2. These are delivered to the browser, which opted-in to using the system's text services framework in order to integrate with the IMEs installed on the system. This will cause input to be forwarded to the active IME. 
@@ -33,7 +33,7 @@ Note that the composition events are also not fired on the focused element as th
 
 Changes to the editable contents can also come from external events, such as collaboration scenarios. In this case, the web editing framework may get some XHR completion that notifies it of some pending collaboartive change that another user has committed. The framework is then responsible for writing to the shared buffer, via the ```updateText()``` method.
 
-![external input](external_input.png)
+![external input](images/external_input.png)
 
 ## API Details
 
@@ -74,7 +74,7 @@ enum EditContextInputPolicy { "auto", "manual" }
 ```
 
 ### Renderer process IME components:
-![Renderer process communication](renderer_process_comm.png)
+![Renderer process communication](images/renderer_process_comm.png)
 
 1. WidgetInputHandlerImpl: Receives the IME messages in the IO thread and posts it to the main thread of the renderer process. 
 2. It is then received by the RenderWidget that sends it to the WebInputMethodControllerImpl to decide which component should handle the IME event and fire the corresponding JS event.
@@ -83,12 +83,12 @@ enum EditContextInputPolicy { "auto", "manual" }
 5. If EditContext is in focus, then it updates the internal states and fires the corresponding events to JS.
 
 ### EditContext:
-![Class diagram](edit_context_class_design.png)
+![Class diagram](images/edit_context_class_design.png)
 
 This class implements the WebInputMethodController interface and is also the event target for various JS events that get fired based on the IME and English typing events. The lifetime of the EditContext is managed by the Document. There can be multiple EditContext for an active document but only one can be focused at a time. The EditContext JS events are fired whenever there is an active composition. EditContext also maintains internal states that get updated during these input events. These internal states are used to communicate changes to the text input services that might affect their text view of the edit control.
 
 ### Synchronization mechanism
-![Synchronization mechanism](edit_context_state_sync.png)
+![Synchronization mechanism](images/edit_context_state_sync.png)
 
 1. EditContext's state can be manipulated by either text input services or JS authors. This state is kept in sync with the text input services via TextInputState data object. This TextInputState object contains the data that is required by the text input services to synchronize their text view and provide meaningful suggestions and other text input intelligence operation.
 2. The TextInputState object is updated on every lifecycle update(BeginMainFrame) which gets invoked right before the paint happens. This TextInputState object is updated from EditContext if it has focus, else, it is updated from InputMethodController and then sent by RenderWidget to the browser process through the IPC mechanism.
