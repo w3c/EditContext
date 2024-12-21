@@ -57,12 +57,9 @@
 
 <body>
     <section id='abstract'>
-        <p>The {{EditContext}} is a new API that allows authors to more directly participate in the text input process.</p>
+        <p>{{EditContext}} is an API that allows authors to more directly participate in the text input process.</p>
     </section>
-    <section id='sotd'>
-      <p>
-      </p>
-    </section>
+    <section id='sotd'></section>
     <section>
         <h2>Introduction</h2>
         <section id="background" class="informative">
@@ -227,7 +224,7 @@
                 [=Handle Input for EditContext=] given the [=EditContext editing host=] .
             </p>
             <h4 id="edit-context-differences">Differences for an EditContext editing host</h4>
-            <p>
+            <div>
                 <p>
                     In many ways, an <a>EditContext editing host</a> behaves in the same way as other types of [=editing host=], 
                     e.g. for a [^html-global/contenteditable^] element. Notable similarities include:
@@ -261,7 +258,7 @@
                         event as specified in [[uievents]].
                     </li>
                 </ul>
-            </p>
+            </div>
 
             <h4>EditContext events</h4>
             <p>
@@ -320,18 +317,18 @@
                 <h4>Examples</h4>
                 <p>Using an {{EditContext}}, an author can mark a region of the document editable by <a data-lt="associated element">associating</a> an {{EditContext}} object with an element as shown in the example below: </p>
                 <aside class="example" title="Associate an EditContext with an Element">
-                    <pre><xmp><script type="module"> 
-        let canvas = document.querySelector("canvas") 
-        canvas.editContext = new EditContext() 
-        // When the associated element is focused, the EditContext is automatically activated.
-        canvas.focus();
-    </script>
-    <canvas></canvas></xmp></pre></aside>
+                    <pre>&lt;script type="module"&gt;
+    let canvas = document.querySelector("canvas")
+    canvas.editContext = new EditContext()
+    // When the associated element is focused, the EditContext is automatically activated.
+    canvas.focus();
+&lt;/script&gt;
+&lt;canvas&gt;&lt;/canvas&gt;</pre></aside>
 
                 <p>In the example below, the author is using a canvas to draw an editable region that allows the user to input a single line of text rendered with a monospace font.  The text for the editable region is maintained by the author as a String.  The text offsets for the selection in the editable region are maintained by the author as a pair of Numbers: selectionStart and selectionEnd.  The Numbers refer to the count of the number of UTF-16 codepoints to the left of the start and end of the selection respectively.  For the sake of communicating the bounding boxes for the current selection and the editable region of the document to Text Input Services, the author also computes the bounding rectangle in CSS pixels for the selection and the editable region of the document. The offset of the rectangle is expressed relative to the origin of the canvas element since that is the element to which the author has <a data-lt="associated element">associated</a> an EditContext. Since the model for the author’s representation of text and selection location matches the form expected by the EditContext API, the author can simply assign those properties to the EditContext <a data-lt="associated element">associated</a> with the canvas whenever those values change. </p>
 
                 <aside class="example" title="Using EditContext with editing model, view, and controller">
-                    <pre><xmp><script type="module">
+                    <pre>&lt;script type="module"&gt;
     // This example is built on top of example 1.
     // Only the added logic is shown here for brevity.
     class EditingModel {
@@ -399,8 +396,8 @@
         editingView, canvas.editContext);
 
     editingController.render() 
-</script>
-<canvas></canvas></xmp></pre>
+&lt;/script&gt;
+&lt;canvas&gt;&lt;/canvas&gt;</pre>
                 </aside>
 
                 <p>Building on the previous example, in response to user input, authors should handle the events of both the editable element (in this case a canvas) and the EditContext.</p>
@@ -409,7 +406,7 @@
                 
                 <p>The below example shows how to handle {{TextUpdateEvent}}, {{TextFormatUpdateEvent}}, and {{CharacterBoundsUpdateEvent}} to update the model and render the result to the canvas.</p>
                 <aside class="example" title="Event handlers for TextUpdateEvent, TextFormatUpdateEvent, and CharacterBoundsUpdateEvent">
-                    <pre><xmp><script>
+                    <pre>&lt;script&gt;
     // This example is built on top of example 1 and example 2.
     // Only the added logic is shown here for brevity.
     class EditingModel {
@@ -494,7 +491,7 @@
     editContext.addEventListener("characterboundsupdate", e => {
         editingcontroller.handleCharacterBoundsUpdate(e.rangeStart, e.rangeEnd);
     });
-</script></xmp></pre>
+&lt;/script&gt;</pre>
                 </aside>
             </section>
         </section>
@@ -503,8 +500,8 @@
             <p>An author doesn’t have to use a canvas element with an EditContext.  In the example below the author uses a div to establish an editable region of the document and renders the contents into that editable region using various other styled elements, images and text.  This allows the author to leverage other built-in editing primitives from the user agent such as selection and spellcheck. </p>
 
             <aside class="example" title="How native selection can be leveraged to handle caret navigation.">
-                <pre><xmp><div></div>
-<script>
+                <pre>&lt;div&gt;&lt;/div&gt;
+&lt;script&gt;
     // This example reuses EditModel and EditController in Example 2 and 3.
     let div = document.querySelector("div") 
     div.editContext = new EditContext() 
@@ -561,11 +558,11 @@
     document.addEventListener("selectionchange", e => {
         editingController.handleSelectionChange()
     });
-</script></xmp></pre>
+&lt;/script&gt;</pre>
             </aside>
 
             <aside class="example" title="How beforeinput can be used to catch insertReplacementText to apply spelling changes">
-                <pre><xmp><script>
+                <pre>&lt;script&gt;
     // This example is built on top of example 4.
     // Only the added logic is shown here for brevity.
     class EditingController {
@@ -590,11 +587,11 @@
             editingController.handleSpellCheck(newText, range)
         }
     })
-</script></xmp></pre>
+&lt;/script&gt;</pre>
             </aside>
 
             <aside class="example" title="How beforeinput can be used to catch deleteByDrag and insertFromDrop to apply drag and drop changes">
-                <pre><xmp><script>
+                <pre>&lt;script&gt;
     // This example is built on top of example 4.
     // Only the added logic is shown here for brevity.
     class EditingController {
@@ -627,7 +624,7 @@
             editingController.handleInsertFromDrop(newText, caretPosition)
         }
     })
-</script></xmp></pre>
+&lt;/script&gt;</pre>
             </aside>            
 
         </section>
@@ -998,7 +995,7 @@
 
         </section>
         <h3 id="editcontext-interface">EditContext Interface</h3>
-    <pre class="idl"><xmp>dictionary EditContextInit {
+    <pre class="idl">dictionary EditContextInit {
     DOMString text;
     unsigned long selectionStart;
     unsigned long selectionEnd;
@@ -1013,22 +1010,22 @@ interface EditContext : EventTarget {
     undefined updateSelection(unsigned long start, unsigned long end);
     undefined updateControlBounds(DOMRect controlBounds);
     undefined updateSelectionBounds(DOMRect selectionBounds);
-    undefined updateCharacterBounds(unsigned long rangeStart, sequence<DOMRect> characterBounds);
+    undefined updateCharacterBounds(unsigned long rangeStart, sequence&lt;DOMRect&gt; characterBounds);
 
-    sequence<HTMLElement> attachedElements();
+    sequence&lt;HTMLElement&gt; attachedElements();
 
     readonly attribute DOMString text;
     readonly attribute unsigned long selectionStart;
     readonly attribute unsigned long selectionEnd;
     readonly attribute unsigned long characterBoundsRangeStart;
-    sequence<DOMRect> characterBounds();
+    sequence&lt;DOMRect&gt; characterBounds();
 
     attribute EventHandler ontextupdate;
     attribute EventHandler ontextformatupdate;
     attribute EventHandler oncharacterboundsupdate;
     attribute EventHandler oncompositionstart;
     attribute EventHandler oncompositionend;
-};</xmp></pre>
+};</pre>
         <dl>
             <dt>text</dt>
             <dd>The {{EditContext/text}} getter steps are to return [=this=]'s [=text=].</dd>
@@ -1178,7 +1175,7 @@ interface EditContext : EventTarget {
         <h2>EditContext Events</h2>
         <section>
             <h3>TextUpdateEvent</h3>
-            <pre class="idl"><xmp>dictionary TextUpdateEventInit : EventInit {
+            <pre class="idl">dictionary TextUpdateEventInit : EventInit {
     unsigned long updateRangeStart;
     unsigned long updateRangeEnd;
     DOMString text;
@@ -1196,7 +1193,7 @@ interface TextUpdateEvent : Event {
     readonly attribute DOMString text;
     readonly attribute unsigned long selectionStart;
     readonly attribute unsigned long selectionEnd;
-};</xmp></pre>
+};</pre>
             <dl>
                 <dt>{{TextUpdateEvent/updateRangeStart}}, of type unsigned long, readonly</dt>
                 <dd>The start position of the range that is to be replaced.</dd>
@@ -1216,7 +1213,7 @@ interface TextUpdateEvent : Event {
         </section>
         <section>
             <h3>TextFormatUpdateEvent</h3>
-            <pre class="idl"><xmp>enum UnderlineStyle { "none", "solid", "dotted", "dashed", "wavy" };
+            <pre class="idl">enum UnderlineStyle { "none", "solid", "dotted", "dashed", "wavy" };
 enum UnderlineThickness { "none", "thin", "thick" };
 
 dictionary TextFormatInit {
@@ -1236,14 +1233,14 @@ interface TextFormat {
 };
 
 dictionary TextFormatUpdateEventInit : EventInit {
-    sequence<TextFormat> textFormats;
+    sequence&lt;TextFormat&gt; textFormats;
 };
 
 [Exposed=Window]
 interface TextFormatUpdateEvent : Event {
     constructor(DOMString type, optional TextFormatUpdateEventInit options = {});
-    sequence<TextFormat> getTextFormats();
-};</xmp></pre>
+    sequence&lt;TextFormat&gt; getTextFormats();
+};</pre>
             <dl>
                 <dt>{{TextFormat/rangeStart}}, of type unsigned long, readonly</dt>
                 <dd>An offset that respresents the position before the first codepoint that should be decorated.</dd>
@@ -1261,7 +1258,7 @@ interface TextFormatUpdateEvent : Event {
         </section>
         <section>
             <h3>CharacterBoundsUpdateEvent</h3>
-            <pre class="idl"><xmp>dictionary CharacterBoundsUpdateEventInit : EventInit {
+            <pre class="idl">dictionary CharacterBoundsUpdateEventInit : EventInit {
     unsigned long rangeStart;
     unsigned long rangeEnd;
 };
@@ -1271,7 +1268,7 @@ interface CharacterBoundsUpdateEvent : Event {
     constructor(DOMString type, optional CharacterBoundsUpdateEventInit options = {});
     readonly attribute unsigned long rangeStart;
     readonly attribute unsigned long rangeEnd;
-};</xmp></pre>
+};</pre>
             <dl>
                 <dt>{{CharacterBoundsUpdateEvent/rangeStart}}, of type unsigned long, readonly
                 </dt>
